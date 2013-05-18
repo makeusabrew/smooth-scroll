@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SmoothScroll.js - A simple jQuery script to animate scrolling to anchor links</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="kraken.css" type="text/css" />
+
+    <!-- HTML5 Shim for IE 6-8 -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<section class="space-bottom bg-gray">
+	    <article class="container text-center">
+
+            <h1 class="text-taller no-space-bottom"><i class="icon-logo"></i> SmoothScroll.js</h1>
+            <p class="text-tall text-muted">A simple jQuery script to animate scrolling to anchor links.</p>
+
+	        <p><a class="btn btn-blue btn-jumbo" href="https://github.com/cferdinandi/smooth-scroll/archive/master.zip">Download SmoothScroll.js</a></p>
+
+	        <p>
+	            <span class="text-small">
+	                <a href="https://github.com/cferdinandi/smooth-scroll"><i class="icon-github"></i> GitHub Project</a>
+	                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                <a href="#more"><i class="icon-docs"></i> Getting Started</a>
+                </span>
+            </p>
+
+        </article>
+    </section>
+
+	<section class="space-bottom">
+	    <article class="container">
+
+
+	        <h1 class="text-center" id="more">How It Works</h1>
+
+            <ol>
+                <li>Include the <code>smooth-scroll.js</code> file on your site.</li>
+                <li>Add the <code>.scroll</code> class to your anchor links.</li>
+                <li>Give the anchor location an ID just like your normally would.</li>
+            </ol>
+
+            <p><a class="scroll" href="#bazinga">Anchor Link</a></p>
+
+            <p>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.</p>
+
+            <p id="bazinga">Bazinga!</p>
+
+            <pre>&lt;a class="scroll" href="#bazinga"&gt;Anchor Link&lt;/a&gt;
+...
+&lt;span id="bazinga"&gt;Bazinga!&lt;/span&gt;</pre>
+
+        </article>
+	</section>
+
+	<footer class="bg-gray">
+        <article class="container">
+
+            <p class="text-small text-muted text-center">Script by <a href="http://www.sycha.com/jquery-smooth-scrolling-internal-anchor-links">Charlie Evans</a>. Rebounded by <a href="http://gomakethings.com">Chris Ferdinandi</a>. Licensed under <a href="http://www.wtfpl.net/">WTFPL</a>.</p>
+
+            <p class="text-small text-muted text-center">SmoothScroll.js is an add-on for <a href="http://cferdinandi.github.com/kraken/">Kraken</a>, a lightweight, mobile-first boilerplate for front-end web developers. It works great as a standalone product, too.</p>
+
+        </article>
+	</footer>
+
+
+    <!-- Javascript -->
+    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+    <script type='text/javascript' src='js/kraken.js'></script>
+
+</body>
+</html>
