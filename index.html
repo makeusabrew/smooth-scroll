@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Smooth Scroll - A simple jQuery script to animate scrolling to anchor links</title>
+    <title>Smooth Scroll - A simple vanilla JS script to animate scrolling to anchor links</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- stylesheets -->
     <link rel="stylesheet" href="kraken.css" type="text/css" />
@@ -18,7 +18,7 @@
 	    <article class="container text-center">
 
             <h1 class="text-taller no-space-bottom"><i class="icon-logo"></i> Smooth Scroll</h1>
-            <p class="text-tall text-muted">A simple jQuery script to animate scrolling to anchor links.</p>
+            <p class="text-tall text-muted">A simple vanilla JS script to animate scrolling to anchor links.</p>
 
 	        <p><a class="btn btn-blue btn-jumbo" href="https://github.com/cferdinandi/smooth-scroll/archive/master.zip">Download Smooth Scroll</a></p>
 
@@ -37,20 +37,9 @@
 	    <article class="container">
 
 
-	        <h1 class="text-center" id="more">How It Works</h1>
+	        <h1 class="text-center" id="more">Getting Started</h1>
 
-            <ol>
-                <li>Include the <code>smooth-scroll.js</code> file on your site.</li>
-                <li>Add the <code>.scroll</code> class to your anchor links.</li>
-                <li>Give the anchor location an ID just like your normally would.</li>
-            </ol>
-
-            <p>For browsers that don't support JavaScript, anchor links work as they normally would. Browsers that support JavaScript will get an animated scroll.</p>
-
-            <p>Smooth Scroll works in all modern browsers and IE 6 and above. It also requires <a href="http://jquery.com/">jQuery</a>.</p>
-
-
-            <h2 class="text-center">Demo</h2>
+	        <p>SmoothScroll animates scrolling to anchor links with vanilla JavaScript.</p>
 
             <p><a class="scroll" href="#bazinga">Anchor Link</a></p>
 
@@ -58,9 +47,37 @@
 
             <p id="bazinga">Bazinga!</p>
 
+            <hr>
+
+
+            <h1 class="text-center">How to use SmoothScroll</h1>
+
+            <h2>1. Include SmoothScroll on your site.</h2>
+
+            <pre>&lt;script src="houdini.js"&gt;&lt;/script&gt;</pre>
+
+
+            <h2>2. Add the markup to your HTML.</h2>
+
+            <p>Turn anchor links into SmoothScroll links by adding the <code>.scroll</code> class. Give the anchor location an ID just like you normally would.</p>
+
             <pre>&lt;a class="scroll" href="#bazinga"&gt;Anchor Link&lt;/a&gt;
 ...
 &lt;span id="bazinga"&gt;Bazinga!&lt;/span&gt;</pre>
+
+
+            <h2>3. Pat yourself on the back.</h2>
+
+            <p>Seriously, you're done. Nice work! Modify as needed.</p>
+
+            <hr>
+
+
+            <h1 class="text-center">Browser Support</h1>
+
+            <p>Houdini works in all modern browsers, including IE 9 and above.</p>
+
+            <p>In older browsers, anchor links jump the way they normally would. If you need to support older browsers, you can still download the <a href="https://github.com/cferdinandi/smooth-scroll/tree/archive-v1">jQuery version of Houdini on GitHub</a>.</p>
 
         </article>
 	</section>
@@ -77,7 +94,6 @@
 
 
     <!-- Javascript -->
-    <script src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
     <script type='text/javascript' src='js/kraken.js'></script>
 
 </body>
