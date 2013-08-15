@@ -1,80 +1,66 @@
 /* =============================================================
- * ios-orientation-change-fix.js
- * Fixes zoom on rotation bug in iOS.
- * Script by @scottjehl, rebound by @wilto
- * https://github.com/scottjehl/iOS-Orientationchange-Fix
- * MIT / GPLv2 License
+
+    Smooth Scroll 2.0
+    Animates scrolling to anchor links, by Chris Ferdinandi.
+    http://gomakethings.com
+
+    Free to use under the MIT License.
+    http://gomakethings.com/mit/
+    
  * ============================================================= */
 
-(function(w){
-	
-	// This fix addresses an iOS bug, so return early if the UA claims it's something else.
-	var ua = navigator.userAgent;
-	if( !( /iPhone|iPad|iPod/.test( navigator.platform ) && /OS [1-5]_[0-9_]* like Mac OS X/i.test(ua) && ua.indexOf( "AppleWebKit" ) > -1 ) ){
-		return;
-	}
+// Feature Test
+if ( 'querySelector' in document && 'addEventListener' in window ) {
 
-    var doc = w.document;
+    // Function to animate the scroll
+    var smoothScroll = function (anchor, duration) {
 
-    if( !doc.querySelector ){ return; }
+        // Calculate how far and how fast to scroll
+        var startLocation = window.pageYOffset;
+        var endLocation = anchor.offsetTop;
+        var distance = endLocation - startLocation;
+        var increments = distance/(duration/20);
 
-    var meta = doc.querySelector( "meta[name=viewport]" ),
-        initialContent = meta && meta.getAttribute( "content" ),
-        disabledZoom = initialContent + ",maximum-scale=1",
-        enabledZoom = initialContent + ",maximum-scale=10",
-        enabled = true,
-		x, y, z, aig;
-
-    if( !meta ){ return; }
-
-    function restoreZoom(){
-        meta.setAttribute( "content", enabledZoom );
-        enabled = true;
-    }
-
-    function disableZoom(){
-        meta.setAttribute( "content", disabledZoom );
-        enabled = false;
-    }
-	
-    function checkTilt( e ){
-		aig = e.accelerationIncludingGravity;
-		x = Math.abs( aig.x );
-		y = Math.abs( aig.y );
-		z = Math.abs( aig.z );
-				
-		// If portrait orientation and in one of the danger zones
-        if( (!w.orientation || w.orientation === 180) && ( x > 7 || ( ( z > 6 && y < 8 || z < 8 && y > 6 ) && x > 5 ) ) ){
-			if( enabled ){
-				disableZoom();
-			}        	
+        // Scroll the page by an increment, and check if it's time to stop
+        var animateScroll = function () {
+            window.scrollBy(0, increments);
+            stopAnimation();
         }
-		else if( !enabled ){
-			restoreZoom();
+
+        // If you've reached the anchor or the end of the page, stop scrolling
+        var stopAnimation = function () {
+            var travelled = window.pageYOffset;
+            if ( (travelled >= (endLocation - increments)) || ((window.innerHeight + travelled) >= document.body.offsetHeight) ) {
+                clearInterval(runAnimation);
+            }
         }
+
+        // Loop the animation function
+        var runAnimation = setInterval(animateScroll, 20);
+   
     }
-	
-	w.addEventListener( "orientationchange", restoreZoom, false );
-	w.addEventListener( "devicemotion", checkTilt, false );
 
-})( this );
+    // Define smooth scroll links
+    var scrollToggle = document.querySelectorAll('.scroll');
 
+    // For each smooth scroll link
+    [].forEach.call(scrollToggle, function (toggle) {
 
+        // When the smooth scroll link is clicked
+        toggle.addEventListener('click', function(e) {
 
+            // Prevent the default link behavior
+            e.preventDefault();
 
+            // Get anchor link and calculate distance from the top
+            var dataID = this.getAttribute('href');
+            var dataTarget = document.querySelector(dataID);
 
-/* =============================================================
- * smooth-scroll.js v1.0
- * Animated scroll to anchor links.
- * Script by Charlie Evans
- * http://www.sycha.com/jquery-smooth-scrolling-internal-anchor-links
- * ============================================================= */
+            // Scroll to the anchor
+            smoothScroll(dataTarget, 500);
 
-(function($) {
-    jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){ // When a link with the .scroll class is clicked
-            event.preventDefault(); // Prevent the default action from occurring
-            $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500); // Animate the scroll to this link's href value
-        });
+        }, false);
+
     });
-})(jQuery);
+
+}
