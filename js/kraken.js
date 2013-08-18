@@ -1,6 +1,6 @@
 /* =============================================================
 
-    Smooth Scroll 2.1
+    Smooth Scroll 2.2
     Animate scrolling to anchor links, by Chris Ferdinandi.
     http://gomakethings.com
 
@@ -66,13 +66,14 @@ if ( 'querySelector' in document && 'addEventListener' in window && Array.protot
             e.preventDefault();
 
             // Get anchor link and calculate distance from the top
-            var dataID = this.getAttribute('href');
+            var dataID = toggle.getAttribute('href');
             var dataTarget = document.querySelector(dataID);
+            var dataSpeed = toggle.getAttribute('data-speed');
 
             // If the anchor exists
             if (dataTarget) {
                 // Scroll to the anchor
-                smoothScroll(dataTarget, 500);
+                smoothScroll(dataTarget, dataSpeed || 500);
             }
 
         }, false);
