@@ -1,6 +1,6 @@
 /* =============================================================
 
-    Smooth Scroll 2.2
+    Smooth Scroll 2.3
     Animate scrolling to anchor links, by Chris Ferdinandi.
     http://gomakethings.com
 
@@ -20,38 +20,39 @@ if ( 'querySelector' in document && 'addEventListener' in window && Array.protot
         var endLocation = anchor.offsetTop;
         var distance = endLocation - startLocation;
         var increments = distance/(duration/16);
+        var stopAnimation;
 
         // Scroll the page by an increment, and check if it's time to stop
         var animateScroll = function () {
             window.scrollBy(0, increments);
             stopAnimation();
-        }
+        };
 
         // If scrolling down
         if ( increments >= 0 ) {
             // Stop animation when you reach the anchor OR the bottom of the page
-            var stopAnimation = function () {
+            stopAnimation = function () {
                 var travelled = window.pageYOffset;
                 if ( (travelled >= (endLocation - increments)) || ((window.innerHeight + travelled) >= document.body.offsetHeight) ) {
                     clearInterval(runAnimation);
                 }
-            }
+            };
         }
         // If scrolling up
         else {
             // Stop animation when you reach the anchor OR the top of the page
-            var stopAnimation = function () {
+            stopAnimation = function () {
                 var travelled = window.pageYOffset;
                 if ( travelled <= (endLocation || 0) ) {
                     clearInterval(runAnimation);
                 }
-            }
+            };
         }
 
         // Loop the animation function
         var runAnimation = setInterval(animateScroll, 16);
    
-    }
+    };
 
     // Define smooth scroll links
     var scrollToggle = document.querySelectorAll('.scroll');
