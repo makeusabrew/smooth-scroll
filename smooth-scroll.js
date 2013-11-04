@@ -20,16 +20,26 @@
         var smoothScroll = function (anchor, duration) {
 
             // Calculate how far and how fast to scroll
+            var frameTick = 16; // msec
             var startLocation = window.pageYOffset;
             var endLocation = anchor.offsetTop;
             var distance = endLocation - startLocation;
-            var increments = distance/(duration/16);
+            var increments = distance/(duration/frameTick);
             var stopAnimation;
 
             // Scroll the page by an increment, and check if it's time to stop
             var animateScroll = function () {
                 window.scrollBy(0, increments);
                 stopAnimation();
+            };
+            
+            var finalise = function() {
+                // cancel the regular animation...
+                clearInterval(runAnimation);
+                // ... and queue up one last frame to make sure we're bang on target
+                setTimeout(function() {
+                    window.scrollTop(0, endLocation);
+                }, frameTick);
             };
 
             // If scrolling down
@@ -38,7 +48,7 @@
                 stopAnimation = function () {
                     var travelled = window.pageYOffset;
                     if ( (travelled >= (endLocation - increments)) || ((window.innerHeight + travelled) >= document.body.offsetHeight) ) {
-                        clearInterval(runAnimation);
+                        finalise();
                     }
                 };
             }
@@ -48,13 +58,13 @@
                 stopAnimation = function () {
                     var travelled = window.pageYOffset;
                     if ( travelled <= (endLocation || 0) ) {
-                        clearInterval(runAnimation);
+                        finalise();
                     }
                 };
             }
 
             // Loop the animation function
-            var runAnimation = setInterval(animateScroll, 16);
+            var runAnimation = setInterval(animateScroll, frameTick);
        
         };
 
