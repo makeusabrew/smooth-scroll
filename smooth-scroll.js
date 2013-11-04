@@ -38,7 +38,7 @@
                 clearInterval(runAnimation);
                 // ... and queue up one last frame to make sure we're bang on target
                 setTimeout(function() {
-                    window.scrollTop(0, endLocation);
+                    window.scrollTo(0, endLocation);
                 }, frameTick);
             };
 
